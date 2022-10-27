@@ -13,5 +13,5 @@ steps:
       "deploy", "releases", "create", "rel-${SHORT_SHA}",
       "--delivery-pipeline", "gke-cluster-info",
       "--region", "europe-west1",
-      "--images", "IMAGE_NAME=europe-west1-docker.pkg.dev/healthhero-366717/apps/gke-cluster-info:${COMMIT_SHA}"
+      "--images", "gke-cluster-info=europe-west1-docker.pkg.dev/healthhero-366717/apps/gke-cluster-info:${COMMIT_SHA}"
     ]
