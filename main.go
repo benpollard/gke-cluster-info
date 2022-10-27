@@ -16,7 +16,7 @@ func main() {
 	inf := new(clusterInfo)
 	c := metadata.NewClient(&http.Client{})
 	inf.Name, _ = c.InstanceAttributeValue("cluster-name")
-	inf.Zone, _ = c.Zone()
+	// inf.Zone, _ = c.Zone()
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		jsonResp, _ := json.Marshal(inf)
