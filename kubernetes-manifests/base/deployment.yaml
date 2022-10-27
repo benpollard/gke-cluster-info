@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: gke-cluster-info
+  name: gke-cluster-info
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gke-cluster-info
+  template:
+    metadata:
+      labels:
+        app: gke-cluster-info
+    spec:
+      containers:
+        - image: gke-cluster-info
+          name: gke-cluster-info

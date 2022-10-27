@@ -1,0 +1,32 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+ name: gke-cluster-info
+serialPipeline:
+ stages:
+ - targetId: dev
+   profiles: [dev]
+   strategy:
+     standard:
+       verify: false
+ - targetId: prod
+   profiles: [prod]
+   strategy:
+     standard:
+       verify: false
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+ name: dev
+requireApproval: false
+gke:
+ cluster: projects/healthhero-366717/locations/europe-west1/clusters/dev-europe-west1
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+ name: prod
+requireApproval: true
+gke:
+ cluster: projects/healthhero-366717/locations/europe-west1/clusters/prod-europe-west1

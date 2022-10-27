@@ -1,0 +1,30 @@
+apiVersion: skaffold/v2beta2
+kind: Config
+metadata:
+  name: gke-cluster-info
+deploy:
+  kustomize:
+    paths:
+      - kubernetes-manifests/base
+profiles:
+  - name: local
+    build:
+      artifacts:
+       - image: gke-cluster-info
+         docker:
+          dockerfile: Dockerfile
+          noCache: false
+      local:
+        push: false
+    deploy:
+      kustomize:
+        paths:
+          - kubernetes-manifests/overlays/local
+    activation:
+      - command: dev
+        kubeContext: minikube
+  - name: dev
+    deploy:
+      kustomize:
+        paths:
+          - kubernetes-manifests/overlays/dev
